@@ -1,3 +1,4 @@
+import 'asset.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'asse.dart';
@@ -5,6 +6,7 @@ import 'cont.dart';
 import 'cn.dart';
 import 'firebase_notification_handler.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+
 
 void main() => runApp(MyApp());
 
@@ -95,8 +97,24 @@ class _MyHomePageState extends State<MyHomePage> {
                  Row(
 
                  children: <Widget>[
+                   InkWell(
+                     onTap:(){
+                       showDialog(
+                           context: context,builder: (_) => AssetGiffyDialog(
+                         image:Image.asset('assets/spec.gif',
+                         fit:BoxFit.cover),
+                         title: Text('Specilization',
+                           style: TextStyle(
+                               fontSize: 22.0, fontWeight: FontWeight.w600),
+                         ),
+                         description: Text('Choose specilization down below',
+                           textAlign: TextAlign.center,
+                           style: TextStyle(),
+                         ),
+                       ) );
 
-                   Padding(
+                     },
+                   child:Padding(
                      padding: EdgeInsets.only(left: 50.0,top: 5.0),
                      child: ClipRRect(
                        borderRadius: BorderRadius.circular(20.0),
@@ -104,6 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
                        child: Image.asset("assets/image_03.jpg",
                            width: 296.0, height: 222.0),
                      ),
+                   ),
                    ),
                  ],
                ),
