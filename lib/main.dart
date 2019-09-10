@@ -119,8 +119,8 @@ class _MyHomePageState extends State<MyHomePage> {
                      child: ClipRRect(
                        borderRadius: BorderRadius.circular(20.0),
 
-                       child: Image.asset("assets/image_03.jpg",
-                           width: 296.0, height: 222.0),
+                       child: Image.asset("assets/spec.png",
+                       ),
                      ),
                    ),
                    ),
@@ -131,12 +131,35 @@ class _MyHomePageState extends State<MyHomePage> {
                      InkWell(
                        onTap:(){ Navigator.push(context, MaterialPageRoute(builder: (context) => cn()));},
                        child:Padding(
-                         padding: EdgeInsets.only(left: 50.0,top: 20.0),
+                         padding: EdgeInsets.only(left: 50.0,top: 25.0),
                          child: ClipRRect(
                            borderRadius: BorderRadius.circular(20.0),
 
-                           child: Image.asset("assets/image_02.jpg",
-                               width: 296.0, height: 222.0),
+                           child: Image.asset("assets/cg.png",
+                               ),
+                         ),
+                       ),
+                     ),
+
+
+                   ],
+                 ),
+                 Row(
+                   children: <Widget>[
+                     InkWell(
+                       onTap:(){
+                         Navigator.push(context, MaterialPageRoute(builder: (context) => cn()));
+                       }
+
+                       ,
+                       child:Padding(
+
+                         padding: EdgeInsets.only(left: 50.0,top: 25.0),
+                         child: ClipRRect(
+                           borderRadius: BorderRadius.circular(20.0),
+
+                           child: Image.asset("assets/net.png",
+                               ),
                          ),
                        ),
                      ),
@@ -154,12 +177,12 @@ class _MyHomePageState extends State<MyHomePage> {
                        ,
                        child:Padding(
 
-                         padding: EdgeInsets.only(left: 50.0,top: 20.0),
+                         padding: EdgeInsets.only(left: 50.0,top: 25.0),
                          child: ClipRRect(
                            borderRadius: BorderRadius.circular(20.0),
 
-                           child: Image.asset("assets/image_01.png",
-                               width: 296.0, height: 222.0),
+                           child: Image.asset("assets/spec.png",
+                           ),
                          ),
                        ),
                      ),
