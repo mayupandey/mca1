@@ -1,6 +1,6 @@
 # mca1
 
-A notes app
+Implemented flutter_pdfview library
 
 ## Getting Started
 
