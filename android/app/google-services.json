@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "193262440784",
+    "firebase_url": "https://mca1-e5709.firebaseio.com",
+    "project_id": "mca1-e5709",
+    "storage_bucket": "mca1-e5709.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:193262440784:android:bb12371d598055db169c55",
+        "android_client_info": {
+          "package_name": "com.gamingfella.mca1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "193262440784-d1911o5q6d2stm31rto9fhc1ll0om46p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoYRT1iAeqFHfQehYeXk2oOaVp_1z6hHo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "193262440784-d1911o5q6d2stm31rto9fhc1ll0om46p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
