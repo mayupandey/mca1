@@ -1,14 +1,27 @@
+import 'dart:io';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/services.dart';
 import 'asset.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'asse.dart';
-import 'cont.dart';
+
 import 'cn.dart';
-import 'firebase_notification_handler.dart';
+import 'cg.dart';
+import 'package:quick_actions/quick_actions.dart';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 
+final List<String> imgList = [
+  'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
+  'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
 
-void main() => runApp(MyApp());
+];
+
+void main() {
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
 
@@ -19,7 +32,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'BCA 5',
       theme: ThemeData(
-          primaryColor: Color.fromRGBO(58, 66, 86, 1.0)
+         primaryColor: Color.fromRGBO(58, 66, 86, 1.0)
+
+
       ),
       home: MyHomePage(title:'BCA 5'),
     );
@@ -39,46 +54,79 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
 
 
+  FirebaseMessaging firebaseMessaging = new FirebaseMessaging();
+
   @override
   void initState() {
 
     super.initState();
-    new FirebaseNotifications().setUpFirebase();
+    firebaseMessaging.configure(
+      onMessage: (Map<String, dynamic> message) async {
+        print("onMessage: $message");
+
+      },
+
+      onLaunch: (Map<String, dynamic> message) async {
+        print("onLaunch: $message");
+
+      },
+      onResume: (Map<String, dynamic> message) async {
+        print("onResume: $message");
+
+      },
+    );
+firebaseMessaging.getToken().then((token){});
+
   }
+
+
+
   @override
   Widget build(BuildContext context) {
     final makeBottom = Container(
       height: 55.0,
       child: BottomAppBar(
+
         color: Color.fromRGBO(58, 66, 86, 1.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             IconButton(
               icon: Icon(Icons.home, color: Colors.white),
+              tooltip: "Home",
               onPressed: () {},
             ),
             IconButton(
               icon: Icon(Icons.bubble_chart, color: Colors.white),
+              tooltip: "Quiz",
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => asse()));
               },
             ),
 
-            IconButton(
-              icon: Icon(Icons.account_box, color: Colors.white),
-              onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (context) => cont()));},
-            )
+
           ],
         ),
       ),
     );
+    final QuickActions quickActions =  QuickActions();
+    quickActions.initialize((String shortcutType) {
+      if (shortcutType == 'action_decrement') {
+        print('The user tapped on the "increment" action.');
+      } else {
+        Navigator.push(context,MaterialPageRoute(builder: (context)=>asse()));
+
+      }
+    });
     final topAppBar = AppBar(
       elevation: 0.1,
-      backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
+      backgroundColor:
+      Color.fromRGBO(58, 66, 86, 1.0),
       actions: <Widget>[
         IconButton(
-          icon: Icon(Icons.device_unknown),
+          icon: Icon(Icons.device_unknown,color:Colors.white,),
+
+          tooltip:"About Us",
           onPressed: () {
             _settingModalBottomSheet(context);
 
@@ -88,12 +136,62 @@ class _MyHomePageState extends State<MyHomePage> {
       title:new Center(child:Text(widget.title,textAlign: TextAlign.center,)),
 
     );
+
+    quickActions.setShortcutItems(<ShortcutItem>[
+      const ShortcutItem(
+          type: 'action_decrement', localizedTitle: 'Read', icon:'book'),
+      const ShortcutItem(
+          type: 'action_increment', localizedTitle: 'Contact Us', icon: 'ic_launcher')
+    ]);
      final bd= Scaffold(
-       backgroundColor:Color.fromRGBO(58, 66, 86, 1.0) ,
+       backgroundColor:
+       Color.fromRGBO(58, 66, 86, 1.0) ,
          body: SingleChildScrollView(
            child: Column(
+
                children: <Widget>[
 
+             CarouselSlider(
+               autoPlay: true,
+             height: 200.0,
+
+               scrollDirection: Axis.horizontal,
+               enlargeCenterPage: true,
+             items: imgList.map((url) {
+               return Builder(
+                 builder: (BuildContext context) {
+                   return Container(
+                       width: MediaQuery.of(context).size.width,
+                       margin: EdgeInsets.symmetric(horizontal: 5.0),
+                       decoration: BoxDecoration(
+                           boxShadow: <BoxShadow>[
+                             BoxShadow(
+                                 color: Colors.grey,
+                                 offset: Offset(2.1, 1.1),
+                                 blurRadius: 5.0),
+                           ],
+                           image: DecorationImage(
+                             image: new AssetImage(
+                                 'assets/wifi.gif'),
+                             fit: BoxFit.fill,
+                           ),
+
+                           color: Colors.white
+
+                       ),
+                       child: Image.network(
+                         url,
+
+
+                         fit: BoxFit.cover,
+                         width: 1000.0,
+                       ),
+                   );
+                 },
+               );
+             }).toList(),
+           ),
+                 SizedBox(height: 20),
                  Row(
 
                  children: <Widget>[
@@ -129,7 +227,7 @@ class _MyHomePageState extends State<MyHomePage> {
                  Row(
                    children: <Widget>[
                      InkWell(
-                       onTap:(){ Navigator.push(context, MaterialPageRoute(builder: (context) => cn()));},
+                       onTap:(){ Navigator.push(context, MaterialPageRoute(builder: (context) => cg()));},
                        child:Padding(
                          padding: EdgeInsets.only(left: 50.0,top: 25.0),
                          child: ClipRRect(
@@ -171,7 +269,7 @@ class _MyHomePageState extends State<MyHomePage> {
                    children: <Widget>[
                      InkWell(
                        onTap:(){
-                         Navigator.push(context, MaterialPageRoute(builder: (context) => cont()));
+
                        }
 
                        ,
@@ -181,7 +279,7 @@ class _MyHomePageState extends State<MyHomePage> {
                          child: ClipRRect(
                            borderRadius: BorderRadius.circular(20.0),
 
-                           child: Image.asset("assets/spec.png",
+                           child: Image.asset("assets/ws.png",
                            ),
                          ),
                        ),
@@ -263,3 +361,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   }
+class Notification {
+  final String title;
+  final String body;
+  final Color color;
+  const Notification(
+      {@required this.title, @required this.body, @required this.color});
+}

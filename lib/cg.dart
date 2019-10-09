@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'main.dart';
 import 'dart:io';
 import 'dart:async';
+import 'cn.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -11,28 +12,28 @@ import 'package:flutter_pdfview/flutter_pdfview.dart';
 
 
 
-class cn extends StatelessWidget{
+class cg extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Digital Marketing',
+      title: 'Computer Graphics',
       theme: ThemeData(
           primaryColor: Color.fromRGBO(58, 66, 86, 1.0)
       ),
-      home:cne(title:'Intro'),
+      home:cge(title:'Computer Graphics'),
     );
   }
 }
-class cne extends StatefulWidget{
-  cne({Key key, this.title}) : super(key: key);
+class cge extends StatefulWidget{
+  cge({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _cneState createState() => _cneState();
+  _cgeState createState() => _cgeState();
 }
-class _cneState extends State<cne> {
+class _cgeState extends State<cge> {
   String pathPDF = "";
   String pathPDF2 = "";
   @override
@@ -125,177 +126,177 @@ class _cneState extends State<cne> {
     final topAppBar = AppBar(
       elevation: 0.1,
       backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
-      
+
       title: new Center(
           child: Text(widget.title, textAlign: TextAlign.center,)),
 
     );
     final n=Container(
       child:Column(
-          children:<Widget>[
-                Slidable(
+        children:<Widget>[
+          Slidable(
 
-                     delegate: new SlidableDrawerDelegate(),
-                 actionExtentRatio: 0.25,
+            delegate: new SlidableDrawerDelegate(),
+            actionExtentRatio: 0.25,
 
-                    child: new Container(
-                   color: Colors.white,
-                      child: new ListTile(
-                      leading: new CircleAvatar(
-                          backgroundColor: Colors.indigoAccent,
-                            child: new Text('1'),
-                   foregroundColor: Colors.white,),
-                       title: new Text('Intro of Computer Networks'),
-                               subtitle: new Text('SlidableDrawerDelegate'),
-        ),
-      ),
+            child: new Container(
+              color: Colors.white,
+              child: new ListTile(
+                leading: new CircleAvatar(
+                  backgroundColor: Colors.indigoAccent,
+                  child: new Text('1'),
+                  foregroundColor: Colors.white,),
+                title: new Text('Intro of Computer Networks'),
+                subtitle: new Text('SlidableDrawerDelegate'),
+              ),
+            ),
 
-                    secondaryActions: <Widget>[
-                      new IconSlideAction(
-                     caption: 'Read',
-                     color: Colors.black45,
-                      icon: Icons.book,
-                        onTap:(){  Navigator.push(
-                            context, MaterialPageRoute(builder: (context) => PDFScreen(path:pathPDF,)));
-                        },
+            secondaryActions: <Widget>[
+              new IconSlideAction(
+                caption: 'Read',
+                color: Colors.black45,
+                icon: Icons.book,
+                onTap:(){  Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => PDFScreen(path:pathPDF,)));
+                },
 
-        ),
-                     new IconSlideAction(
-                      caption: 'Listen',
+              ),
+              new IconSlideAction(
+                caption: 'Listen',
+                color: Colors.red,
+                icon: Icons.speaker,
+
+              ),
+
+            ],
+
+          ),
+          Column(
+            children: <Widget>[
+              Slidable(
+
+                delegate: new SlidableDrawerDelegate(),
+                actionExtentRatio: 0.25,
+
+                child: new Container(
+                  color: Colors.white,
+                  child: new ListTile(
+                    leading: new CircleAvatar(
+                      backgroundColor: Colors.indigoAccent,
+                      child: new Text('2'),
+                      foregroundColor: Colors.white,),
+                    title: new Text('Basic Hell'),
+                    subtitle: new Text('SlidableDrawerDelegate'),
+                  ),
+                ),
+
+                secondaryActions: <Widget>[
+                  new IconSlideAction(
+                    caption: 'Read',
+                    color: Colors.black45,
+                    icon: Icons.book,
+                    onTap:(){  Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => PDFScreen(path:pathPDF2,)));
+                    },
+
+                  ),
+                  new IconSlideAction(
+                    caption: 'Listen',
                     color: Colors.red,
-                          icon: Icons.speaker,
+                    icon: Icons.speaker,
 
-        ),
-
-    ],
-
-    ),
-            Column(
-              children: <Widget>[
-                Slidable(
-
-                  delegate: new SlidableDrawerDelegate(),
-                  actionExtentRatio: 0.25,
-
-                  child: new Container(
-                    color: Colors.white,
-                    child: new ListTile(
-                      leading: new CircleAvatar(
-                        backgroundColor: Colors.indigoAccent,
-                        child: new Text('2'),
-                        foregroundColor: Colors.white,),
-                      title: new Text('Basic Hell'),
-                      subtitle: new Text('SlidableDrawerDelegate'),
-                    ),
                   ),
 
-                  secondaryActions: <Widget>[
-                    new IconSlideAction(
-                      caption: 'Read',
-                      color: Colors.black45,
-                      icon: Icons.book,
-                      onTap:(){  Navigator.push(
-                          context, MaterialPageRoute(builder: (context) => PDFScreen(path:pathPDF2,)));
-                      },
+                ],
 
-                    ),
-                    new IconSlideAction(
-                      caption: 'Listen',
-                      color: Colors.red,
-                      icon: Icons.speaker,
+              ),
+            ],
+          ),
+          Column(
+            children: <Widget>[
+              Slidable(
 
-                    ),
+                delegate: new SlidableDrawerDelegate(),
+                actionExtentRatio: 0.25,
 
-                  ],
-
+                child: new Container(
+                  color: Colors.white,
+                  child: new ListTile(
+                    leading: new CircleAvatar(
+                      backgroundColor: Colors.indigoAccent,
+                      child: new Text('3'),
+                      foregroundColor: Colors.white,),
+                    title: new Text('Basic Hell'),
+                    subtitle: new Text('SlidableDrawerDelegate'),
+                  ),
                 ),
-              ],
-            ),
-            Column(
-              children: <Widget>[
-                Slidable(
 
-                  delegate: new SlidableDrawerDelegate(),
-                  actionExtentRatio: 0.25,
+                secondaryActions: <Widget>[
+                  new IconSlideAction(
+                    caption: 'Read',
+                    color: Colors.black45,
+                    icon: Icons.book,
 
-                  child: new Container(
-                    color: Colors.white,
-                    child: new ListTile(
-                      leading: new CircleAvatar(
-                        backgroundColor: Colors.indigoAccent,
-                        child: new Text('3'),
-                        foregroundColor: Colors.white,),
-                      title: new Text('Basic Hell'),
-                      subtitle: new Text('SlidableDrawerDelegate'),
-                    ),
+                  ),
+                  new IconSlideAction(
+                    caption: 'Listen',
+                    color: Colors.red,
+                    icon: Icons.speaker,
+
                   ),
 
-                  secondaryActions: <Widget>[
-                    new IconSlideAction(
-                      caption: 'Read',
-                      color: Colors.black45,
-                      icon: Icons.book,
+                ],
 
-                    ),
-                    new IconSlideAction(
-                      caption: 'Listen',
-                      color: Colors.red,
-                      icon: Icons.speaker,
+              ),
+            ],
+          ),
+          Column(
+            children: <Widget>[
+              Slidable(
 
-                    ),
+                delegate: new SlidableDrawerDelegate(),
+                actionExtentRatio: 0.25,
 
-                  ],
-
+                child: new Container(
+                  color: Colors.white,
+                  child: new ListTile(
+                    leading: new CircleAvatar(
+                      backgroundColor: Colors.indigoAccent,
+                      child: new Text('4'),
+                      foregroundColor: Colors.white,),
+                    title: new Text('Basic Hell'),
+                    subtitle: new Text('SlidableDrawerDelegate'),
+                  ),
                 ),
-              ],
-            ),
-            Column(
-              children: <Widget>[
-                Slidable(
 
-                  delegate: new SlidableDrawerDelegate(),
-                  actionExtentRatio: 0.25,
+                secondaryActions: <Widget>[
+                  new IconSlideAction(
+                    caption: 'Read',
+                    color: Colors.black45,
+                    icon: Icons.book,
 
-                  child: new Container(
-                    color: Colors.white,
-                    child: new ListTile(
-                      leading: new CircleAvatar(
-                        backgroundColor: Colors.indigoAccent,
-                        child: new Text('4'),
-                        foregroundColor: Colors.white,),
-                      title: new Text('Basic Hell'),
-                      subtitle: new Text('SlidableDrawerDelegate'),
-                    ),
+                  ),
+                  new IconSlideAction(
+                    caption: 'Listen',
+                    color: Colors.red,
+                    icon: Icons.speaker,
+
                   ),
 
-                  secondaryActions: <Widget>[
-                    new IconSlideAction(
-                      caption: 'Read',
-                      color: Colors.black45,
-                      icon: Icons.book,
+                ],
 
-                    ),
-                    new IconSlideAction(
-                      caption: 'Listen',
-                      color: Colors.red,
-                      icon: Icons.speaker,
-
-                    ),
-
-                  ],
-
-                ),
-              ],
-            ),
-    ],
-    ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
 
     return Scaffold(
       backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
       appBar: topAppBar,
       bottomNavigationBar: makeBottom,
-     body: n,
+      body: n,
 
     );
   }

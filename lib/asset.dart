@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'dm.dart';
+import 'ws.dart';
+import 'anim.dart';
 class AssetGiffyDialog extends StatelessWidget {
   final Image image;
   final Text title;
@@ -69,7 +72,9 @@ class AssetGiffyDialog extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                             borderRadius:
                             BorderRadius.circular(buttonRadius)),
-                        onPressed: () => Navigator.of(context).pop(),
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => dm()));
+                          },
                         child: buttonCancelText ??
                             Text(
                               'Digital Marketing',
@@ -81,10 +86,10 @@ class AssetGiffyDialog extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                             borderRadius:
                             BorderRadius.circular(buttonRadius)),
-                        onPressed: () => Navigator.of(context).pop(),
+                        onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (context) => ws()));},
                         child: buttonCancelText ??
                             Text(
-                              'Web Security',
+                              'Web Devlopment',
                               style: TextStyle(color: Colors.black),
                             ),
 
@@ -95,7 +100,7 @@ class AssetGiffyDialog extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius:
                         BorderRadius.circular(buttonRadius)),
-                    onPressed: () => Navigator.of(context).pop(),
+                    onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => anim()));},
                     child: buttonCancelText ??
                         Text(
                           '  Animation   ',

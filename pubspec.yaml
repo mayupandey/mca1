@@ -1,4 +1,4 @@
-name: mca1
+name: BCA5
 description: A notes app
 
 # The following defines the version and build number for your application.
@@ -17,13 +17,18 @@ environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
-  url_launcher: '5.1.2'
+  url_launcher: '5.1.3'
   
 
   flutter_slidable: "^0.4.7"
   flutter_pdfview: ^1.0.0+9
   path_provider: "1.3.0"
-  firebase_messaging: "5.1.5"
+  quick_actions: ^0.3.0+1
+  carousel_slider: ^1.3.0
+  firebase_messaging: ^5.1.6
+
+
+
   flutter:
     sdk: flutter
 
@@ -58,9 +63,13 @@ flutter:
     - assets/demo.pdf
     - assets/mca.pdf
     - assets/spec.gif
-    - assets/spec.png
     - assets/cg.png
     - assets/net.png
+    - assets/spec.png
+    - assets/ws.png
+    - assets/tenor.gif
+    - assets/wifi.gif
+
 
 
 
