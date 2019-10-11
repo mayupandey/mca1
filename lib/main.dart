@@ -19,8 +19,8 @@ final List<String> imgList = [
 ];
 
 void main() {
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  runApp(MyApp());
+ SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  runApp(new MyApp());
 }
 
 class MyApp extends StatelessWidget {
