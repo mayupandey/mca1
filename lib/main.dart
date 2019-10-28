@@ -5,7 +5,7 @@ import 'asset.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'asse.dart';
-
+import 'package:slider_button/slider_button.dart';
 import 'cn.dart';
 import 'cg.dart';
 import 'package:quick_actions/quick_actions.dart';
@@ -13,9 +13,9 @@ import 'package:quick_actions/quick_actions.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 final List<String> imgList = [
-  'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
-  'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
+  'https://cdn.dribbble.com/users/2071898/screenshots/6586059/ezgif.com-resize.gif',
 
+  'https://cdn.dribbble.com/users/2326066/screenshots/7446803/image.gif'
 ];
 
 void main() {
@@ -32,9 +32,14 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'BCA 5',
       theme: ThemeData(
+          brightness: Brightness.light,
          primaryColor: Color.fromRGBO(58, 66, 86, 1.0)
 
 
+
+      ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
       ),
       home: MyHomePage(title:'BCA 5'),
     );
@@ -152,8 +157,10 @@ firebaseMessaging.getToken().then((token){});
                children: <Widget>[
 
              CarouselSlider(
+              pauseAutoPlayOnTouch:const Duration(seconds: 20) ,
                autoPlay: true,
-             height: 200.0,
+               autoPlayInterval: const Duration(seconds: 20),
+               height: 200.0,
 
                scrollDirection: Axis.horizontal,
                enlargeCenterPage: true,
@@ -172,7 +179,7 @@ firebaseMessaging.getToken().then((token){});
                            ],
                            image: DecorationImage(
                              image: new AssetImage(
-                                 'assets/wifi.gif'),
+                                 'assets/nic.gif'),
                              fit: BoxFit.fill,
                            ),
 
@@ -200,6 +207,7 @@ firebaseMessaging.getToken().then((token){});
                        showDialog(
                            context: context,builder: (_) => AssetGiffyDialog(
                          image:Image.asset('assets/spec.gif',
+
                          fit:BoxFit.cover),
                          title: Text('Specilization',
                            style: TextStyle(
@@ -218,6 +226,7 @@ firebaseMessaging.getToken().then((token){});
                        borderRadius: BorderRadius.circular(20.0),
 
                        child: Image.asset("assets/spec.png",
+                         height: 60,
                        ),
                      ),
                    ),
@@ -234,7 +243,9 @@ firebaseMessaging.getToken().then((token){});
                            borderRadius: BorderRadius.circular(20.0),
 
                            child: Image.asset("assets/cg.png",
-                               ),
+                               height: 60
+
+                           ),
                          ),
                        ),
                      ),
@@ -257,6 +268,7 @@ firebaseMessaging.getToken().then((token){});
                            borderRadius: BorderRadius.circular(20.0),
 
                            child: Image.asset("assets/net.png",
+                               height: 60
                                ),
                          ),
                        ),
@@ -280,6 +292,8 @@ firebaseMessaging.getToken().then((token){});
                            borderRadius: BorderRadius.circular(20.0),
 
                            child: Image.asset("assets/ws.png",
+                               height: 60
+
                            ),
                          ),
                        ),
@@ -335,7 +349,28 @@ firebaseMessaging.getToken().then((token){});
                     height: 103,
                     width: 103,),
                 ),
+                SizedBox(height:20),
+                Center(child: SliderButton(
+                  action: () {
+                    ///Do something here
+                    Navigator.of(context).pop();
+                  },
+                  label: Text(
+                    "Buy us a coffe",
+                    style: TextStyle(
+                        color: Color(0xff4a4a4a), fontWeight: FontWeight.w500, fontSize: 17),
+                  ),
+                  icon: Center(
+                      child: Icon(
+                        Icons.favorite,
+                        color: Colors.red,
+                        size: 40.0,
+                        semanticLabel: 'Text to announce in accessibility modes',
+                      )),
 
+
+                )),
+                  SizedBox(height: 20),
               ],
             ),
             )

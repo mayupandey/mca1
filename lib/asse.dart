@@ -130,7 +130,23 @@ class _assState extends State<ass>with SingleTickerProviderStateMixin {
           SizedBox(
             height: 20.0,
           ),
+
+          Card(
+
+            child: Image.asset("assets/wifi.gif",
+              fit: BoxFit.cover,),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+
+            ),
+            elevation: 5,
+            margin: EdgeInsets.all(10),
+          ),
+
+
+
           RaisedButton(
+
             child: Text("Try Again"),
             onPressed: () {
               fetchQuestions();
