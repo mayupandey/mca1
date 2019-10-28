@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'asse.dart';
 import 'main.dart';
 import 'dart:io';
 import 'dart:async';
@@ -36,20 +37,28 @@ class cge extends StatefulWidget{
 class _cgeState extends State<cge> {
   String pathPDF = "";
   String pathPDF2 = "";
+  String pathPDF3="";
   @override
   void initState() {
     super.initState();
-    fromAsset('assets/demo.pdf').then((f) {
+    fromAsset('assets/pdf/wsunit1.pdf').then((f) {
       setState(() {
         pathPDF = f.path;
         print(pathPDF);
       });
     }
     );
-    fromAsset2('assets/mca.pdf').then((f) {
+    fromAsset2('assets/pdf/wsunit2.pdf').then((f) {
       setState(() {
         pathPDF2 = f.path;
         print(pathPDF2);
+      });
+    }
+    );
+    fromAsset3('assets/pdf/wsunit3.pdf').then((f) {
+      setState(() {
+        pathPDF3 = f.path;
+        print(pathPDF3);
       });
     }
     );
@@ -64,7 +73,7 @@ class _cgeState extends State<cge> {
 
     try {
       var dir = await getApplicationDocumentsDirectory();
-      File file = File("${dir.path}/large1.pdf");
+      File file = File("${dir.path}/wsunit1.pdf");
       var data = await rootBundle.load(asset);
       var bytes = data.buffer.asUint8List();
       await file.writeAsBytes(bytes, flush: true);
@@ -82,7 +91,25 @@ class _cgeState extends State<cge> {
 
     try {
       var dir = await getApplicationDocumentsDirectory();
-      File file = File("${dir.path}/large2.pdf");
+      File file = File("${dir.path}/wsunit2.pdf");
+      var data = await rootBundle.load(asset);
+      var bytes = data.buffer.asUint8List();
+      await file.writeAsBytes(bytes, flush: true);
+      completer.complete(file);
+    } catch (e) {
+      throw Exception('Error parsing asset file!');
+    }
+
+    return completer.future;
+  }
+  Future<File> fromAsset3(String asset) async {
+    // To open from assets, you can copy them to the app storage folder, and the access them "locally"
+    // To open from assets, you can copy them to the app storage folder, and the access them "locally"
+    Completer<File> completer = Completer();
+
+    try {
+      var dir = await getApplicationDocumentsDirectory();
+      File file = File("${dir.path}/wsunit3.pdf");
       var data = await rootBundle.load(asset);
       var bytes = data.buffer.asUint8List();
       await file.writeAsBytes(bytes, flush: true);
@@ -113,7 +140,7 @@ class _cgeState extends State<cge> {
               icon: Icon(Icons.bubble_chart, color: Colors.white),
               onPressed: () {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => cn()));
+                    context, MaterialPageRoute(builder: (context) => asse()));
               },
             ),
 
@@ -145,8 +172,8 @@ class _cgeState extends State<cge> {
                   backgroundColor: Colors.indigoAccent,
                   child: new Text('1'),
                   foregroundColor: Colors.white,),
-                title: new Text('Intro of Computer Networks'),
-                subtitle: new Text('SlidableDrawerDelegate'),
+                title: new Text('Intro of Web Security'),
+                subtitle: new Text('Encoding Scheme, Web Application Architechture'),
               ),
             ),
 
@@ -160,12 +187,7 @@ class _cgeState extends State<cge> {
                 },
 
               ),
-              new IconSlideAction(
-                caption: 'Listen',
-                color: Colors.red,
-                icon: Icons.speaker,
 
-              ),
 
             ],
 
@@ -184,8 +206,8 @@ class _cgeState extends State<cge> {
                       backgroundColor: Colors.indigoAccent,
                       child: new Text('2'),
                       foregroundColor: Colors.white,),
-                    title: new Text('Basic Hell'),
-                    subtitle: new Text('SlidableDrawerDelegate'),
+                    title: new Text('Attacks'),
+                    subtitle: new Text('Types of Attack'),
                   ),
                 ),
 
@@ -199,12 +221,7 @@ class _cgeState extends State<cge> {
                     },
 
                   ),
-                  new IconSlideAction(
-                    caption: 'Listen',
-                    color: Colors.red,
-                    icon: Icons.speaker,
 
-                  ),
 
                 ],
 
@@ -225,8 +242,8 @@ class _cgeState extends State<cge> {
                       backgroundColor: Colors.indigoAccent,
                       child: new Text('3'),
                       foregroundColor: Colors.white,),
-                    title: new Text('Basic Hell'),
-                    subtitle: new Text('SlidableDrawerDelegate'),
+                    title: new Text('User Attack'),
+                    subtitle: new Text('Slide to open'),
                   ),
                 ),
 
@@ -235,58 +252,20 @@ class _cgeState extends State<cge> {
                     caption: 'Read',
                     color: Colors.black45,
                     icon: Icons.book,
+                    onTap: (){
+                      Navigator.push(
+                          context, MaterialPageRoute(builder: (context) => PDFScreen(path:pathPDF3,)));
+                    },
 
                   ),
-                  new IconSlideAction(
-                    caption: 'Listen',
-                    color: Colors.red,
-                    icon: Icons.speaker,
 
-                  ),
 
                 ],
 
               ),
             ],
           ),
-          Column(
-            children: <Widget>[
-              Slidable(
 
-                delegate: new SlidableDrawerDelegate(),
-                actionExtentRatio: 0.25,
-
-                child: new Container(
-                  color: Colors.white,
-                  child: new ListTile(
-                    leading: new CircleAvatar(
-                      backgroundColor: Colors.indigoAccent,
-                      child: new Text('4'),
-                      foregroundColor: Colors.white,),
-                    title: new Text('Basic Hell'),
-                    subtitle: new Text('SlidableDrawerDelegate'),
-                  ),
-                ),
-
-                secondaryActions: <Widget>[
-                  new IconSlideAction(
-                    caption: 'Read',
-                    color: Colors.black45,
-                    icon: Icons.book,
-
-                  ),
-                  new IconSlideAction(
-                    caption: 'Listen',
-                    color: Colors.red,
-                    icon: Icons.speaker,
-
-                  ),
-
-                ],
-
-              ),
-            ],
-          ),
         ],
       ),
     );

@@ -5,12 +5,15 @@ import 'asset.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'asse.dart';
-import 'package:slider_button/slider_button.dart';
+
 import 'cn.dart';
 import 'cg.dart';
 import 'package:quick_actions/quick_actions.dart';
 
+
 import 'package:firebase_messaging/firebase_messaging.dart';
+
+import 'ws.dart';
 
 final List<String> imgList = [
   'https://cdn.dribbble.com/users/2071898/screenshots/6586059/ezgif.com-resize.gif',
@@ -282,6 +285,7 @@ firebaseMessaging.getToken().then((token){});
                      InkWell(
                        onTap:(){
 
+                         Navigator.push(context, MaterialPageRoute(builder: (context) => ws()));
                        }
 
                        ,
@@ -333,44 +337,26 @@ firebaseMessaging.getToken().then((token){});
                 ),
                 FlatButton(
                   onPressed:_mack,
+
                   child: Image.asset("assets/man1.png",
                     height: 100,
-                    width: 100,),
+                    width: 100,
+                  ),
                 ),
                 FlatButton(
-                  onPressed:_mack,
+
+                  onPressed:_srk,
                   child: Image.asset("assets/man2.png",
                     height: 100,
                     width: 100,),
                 ),
                 FlatButton(
-                  onPressed: _mack,
+                  onPressed: _sachin,
                   child:Image.asset("assets/man3.png",
-                    height: 103,
-                    width: 103,),
+                    height: 100,
+                    width: 100,),
                 ),
-                SizedBox(height:20),
-                Center(child: SliderButton(
-                  action: () {
-                    ///Do something here
-                    Navigator.of(context).pop();
-                  },
-                  label: Text(
-                    "Buy us a coffe",
-                    style: TextStyle(
-                        color: Color(0xff4a4a4a), fontWeight: FontWeight.w500, fontSize: 17),
-                  ),
-                  icon: Center(
-                      child: Icon(
-                        Icons.favorite,
-                        color: Colors.red,
-                        size: 40.0,
-                        semanticLabel: 'Text to announce in accessibility modes',
-                      )),
 
-
-                )),
-                  SizedBox(height: 20),
               ],
             ),
             )
@@ -379,7 +365,15 @@ firebaseMessaging.getToken().then((token){});
     );
   }
   _launchURL() async {
-    const url = 'https://flutter.io';
+    const url = 'https://github.com/mayupandey';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Please connect to the internet';
+    }
+  }
+  _sachin() async {
+    const url = 'https://www.instagram.com/sachin_ss_sharma/';
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -387,7 +381,15 @@ firebaseMessaging.getToken().then((token){});
     }
   }
   _mack() async {
-    const url = 'https://github.com/mayupandey';
+    const url = 'https://www.instagram.com/geek_programmer/';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Please connect to the internet';
+    }
+  }
+  _srk() async {
+    const url = 'https://www.instagram.com/srk_name_izz_enough/';
     if (await canLaunch(url)) {
       await launch(url);
     } else {

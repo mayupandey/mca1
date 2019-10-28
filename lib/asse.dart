@@ -124,16 +124,14 @@ class _assState extends State<ass>with SingleTickerProviderStateMixin {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Text(
-            'Error: ${snapshot.error}',
-          ),
+
           SizedBox(
             height: 20.0,
           ),
 
           Card(
 
-            child: Image.asset("assets/wifi.gif",
+            child: Image.asset("assets/nic.gif",
               fit: BoxFit.cover,),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0),

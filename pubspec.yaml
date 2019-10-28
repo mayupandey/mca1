@@ -70,8 +70,19 @@ flutter:
     - assets/spec.png
     - assets/ws.png
     - assets/tenor.gif
-    - assets/wifi.gif
     - assets/nic.gif
+    - assets/pdf/cgunit1min.pdf
+    - assets/pdf/cgunit2min.pdf
+    - assets/pdf/cgunit2min.pdf
+    - assets/pdf/cnunit1.pdf
+    - assets/pdf/cnunit2.pdf
+    - assets/pdf/cnunit3.pdf
+    - assets/pdf/dmunit1.pdf
+    - assets/pdf/dmunit2.pdf
+    - assets/pdf/googlealgo.pdf
+    - assets/pdf/wsunit1.pdf
+    - assets/pdf/wsunit2.pdf
+    - assets/pdf/wsunit3.pdf
 
 
 

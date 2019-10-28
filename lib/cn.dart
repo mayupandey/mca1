@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'asse.dart';
 import 'main.dart';
 import 'dart:io';
 import 'dart:async';
@@ -16,11 +17,11 @@ class cn extends StatelessWidget{
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Digital Marketing',
+      title: 'Computer Network',
       theme: ThemeData(
           primaryColor: Color.fromRGBO(58, 66, 86, 1.0)
       ),
-      home:cne(title:'Intro'),
+      home:cne(title:'Computer Network'),
     );
   }
 }
@@ -35,23 +36,32 @@ class cne extends StatefulWidget{
 class _cneState extends State<cne> {
   String pathPDF = "";
   String pathPDF2 = "";
+  String pathPDF3="";
   @override
   void initState() {
     super.initState();
-    fromAsset('assets/demo.pdf').then((f) {
+    fromAsset('assets/pdf/cnunit1.pdf').then((f) {
       setState(() {
         pathPDF = f.path;
         print(pathPDF);
       });
     }
     );
-    fromAsset2('assets/mca.pdf').then((f) {
+    fromAsset2('assets/pdf/cnunit2.pdf').then((f) {
       setState(() {
         pathPDF2 = f.path;
         print(pathPDF2);
       });
     }
     );
+    fromAsset3('assets/pdf/cnunit3.pdf').then((f) {
+      setState(() {
+        pathPDF3 = f.path;
+        print(pathPDF3);
+      });
+    }
+    );
+
     // createFileOfPdfUrl().then((f) {
 
   }
@@ -63,7 +73,7 @@ class _cneState extends State<cne> {
 
     try {
       var dir = await getApplicationDocumentsDirectory();
-      File file = File("${dir.path}/large1.pdf");
+      File file = File("${dir.path}/cnunit1.pdf");
       var data = await rootBundle.load(asset);
       var bytes = data.buffer.asUint8List();
       await file.writeAsBytes(bytes, flush: true);
@@ -74,6 +84,7 @@ class _cneState extends State<cne> {
 
     return completer.future;
   }
+
   Future<File> fromAsset2(String asset) async {
     // To open from assets, you can copy them to the app storage folder, and the access them "locally"
     // To open from assets, you can copy them to the app storage folder, and the access them "locally"
@@ -81,7 +92,25 @@ class _cneState extends State<cne> {
 
     try {
       var dir = await getApplicationDocumentsDirectory();
-      File file = File("${dir.path}/large2.pdf");
+      File file = File("${dir.path}/cnunit2.pdf");
+      var data = await rootBundle.load(asset);
+      var bytes = data.buffer.asUint8List();
+      await file.writeAsBytes(bytes, flush: true);
+      completer.complete(file);
+    } catch (e) {
+      throw Exception('Error parsing asset file!');
+    }
+
+    return completer.future;
+  }
+  Future<File> fromAsset3(String asset) async {
+    // To open from assets, you can copy them to the app storage folder, and the access them "locally"
+    // To open from assets, you can copy them to the app storage folder, and the access them "locally"
+    Completer<File> completer = Completer();
+
+    try {
+      var dir = await getApplicationDocumentsDirectory();
+      File file = File("${dir.path}/cnunit3.pdf");
       var data = await rootBundle.load(asset);
       var bytes = data.buffer.asUint8List();
       await file.writeAsBytes(bytes, flush: true);
@@ -112,7 +141,7 @@ class _cneState extends State<cne> {
               icon: Icon(Icons.bubble_chart, color: Colors.white),
               onPressed: () {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => cn()));
+                    context, MaterialPageRoute(builder: (context) => asse()));
               },
             ),
 
@@ -146,7 +175,7 @@ class _cneState extends State<cne> {
                             child: new Text('1'),
                    foregroundColor: Colors.white,),
                        title: new Text('Intro of Computer Networks'),
-                               subtitle: new Text('SlidableDrawerDelegate'),
+                               subtitle: new Text('Data Communication,Communication Channel'),
         ),
       ),
 
@@ -160,12 +189,7 @@ class _cneState extends State<cne> {
                         },
 
         ),
-                     new IconSlideAction(
-                      caption: 'Listen',
-                    color: Colors.red,
-                          icon: Icons.speaker,
 
-        ),
 
     ],
 
@@ -184,8 +208,8 @@ class _cneState extends State<cne> {
                         backgroundColor: Colors.indigoAccent,
                         child: new Text('2'),
                         foregroundColor: Colors.white,),
-                      title: new Text('Basic Hell'),
-                      subtitle: new Text('SlidableDrawerDelegate'),
+                      title: new Text('Wireless Transmission'),
+                      subtitle: new Text('Wireless Transmission, Network Model'),
                     ),
                   ),
 
@@ -199,12 +223,7 @@ class _cneState extends State<cne> {
                       },
 
                     ),
-                    new IconSlideAction(
-                      caption: 'Listen',
-                      color: Colors.red,
-                      icon: Icons.speaker,
 
-                    ),
 
                   ],
 
@@ -225,8 +244,8 @@ class _cneState extends State<cne> {
                         backgroundColor: Colors.indigoAccent,
                         child: new Text('3'),
                         foregroundColor: Colors.white,),
-                      title: new Text('Basic Hell'),
-                      subtitle: new Text('SlidableDrawerDelegate'),
+                      title: new Text('Design Issue,Algorithm'),
+                      subtitle: new Text('Data link Desgin Issue,algo,app layer'),
                     ),
                   ),
 
@@ -235,58 +254,20 @@ class _cneState extends State<cne> {
                       caption: 'Read',
                       color: Colors.black45,
                       icon: Icons.book,
+                      onTap:(){
+                        Navigator.push(
+                            context, MaterialPageRoute(builder: (context) => PDFScreen(path:pathPDF3,)));
+                      } ,
 
                     ),
-                    new IconSlideAction(
-                      caption: 'Listen',
-                      color: Colors.red,
-                      icon: Icons.speaker,
 
-                    ),
 
                   ],
 
                 ),
               ],
             ),
-            Column(
-              children: <Widget>[
-                Slidable(
 
-                  delegate: new SlidableDrawerDelegate(),
-                  actionExtentRatio: 0.25,
-
-                  child: new Container(
-                    color: Colors.white,
-                    child: new ListTile(
-                      leading: new CircleAvatar(
-                        backgroundColor: Colors.indigoAccent,
-                        child: new Text('4'),
-                        foregroundColor: Colors.white,),
-                      title: new Text('Basic Hell'),
-                      subtitle: new Text('SlidableDrawerDelegate'),
-                    ),
-                  ),
-
-                  secondaryActions: <Widget>[
-                    new IconSlideAction(
-                      caption: 'Read',
-                      color: Colors.black45,
-                      icon: Icons.book,
-
-                    ),
-                    new IconSlideAction(
-                      caption: 'Listen',
-                      color: Colors.red,
-                      icon: Icons.speaker,
-
-                    ),
-
-                  ],
-
-                ),
-              ],
-            ),
     ],
     ),
     );

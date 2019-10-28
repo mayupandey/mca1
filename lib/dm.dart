@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'asse.dart';
 import 'main.dart';
 import 'dart:io';
 import 'dart:async';
@@ -36,23 +37,32 @@ class cge extends StatefulWidget{
 class _cgeState extends State<cge> {
   String pathPDF = "";
   String pathPDF2 = "";
+  String pathPDF3= "";
   @override
   void initState() {
     super.initState();
-    fromAsset('assets/demo.pdf').then((f) {
+    fromAsset('assets/pdf/dmunit1.pdf').then((f) {
       setState(() {
         pathPDF = f.path;
         print(pathPDF);
       });
     }
     );
-    fromAsset2('assets/mca.pdf').then((f) {
+    fromAsset2('assets/pdf/dmunit2.pdf').then((f) {
       setState(() {
         pathPDF2 = f.path;
         print(pathPDF2);
       });
     }
     );
+    fromAsset3('assets/pdf/googlealgo.pdf').then((f) {
+      setState(() {
+        pathPDF3 = f.path;
+        print(pathPDF3);
+      });
+    }
+    );
+
     // createFileOfPdfUrl().then((f) {
 
   }
@@ -64,7 +74,7 @@ class _cgeState extends State<cge> {
 
     try {
       var dir = await getApplicationDocumentsDirectory();
-      File file = File("${dir.path}/large1.pdf");
+      File file = File("${dir.path}/dmunit1.pdf");
       var data = await rootBundle.load(asset);
       var bytes = data.buffer.asUint8List();
       await file.writeAsBytes(bytes, flush: true);
@@ -82,7 +92,25 @@ class _cgeState extends State<cge> {
 
     try {
       var dir = await getApplicationDocumentsDirectory();
-      File file = File("${dir.path}/large2.pdf");
+      File file = File("${dir.path}/dmunit2.pdf");
+      var data = await rootBundle.load(asset);
+      var bytes = data.buffer.asUint8List();
+      await file.writeAsBytes(bytes, flush: true);
+      completer.complete(file);
+    } catch (e) {
+      throw Exception('Error parsing asset file!');
+    }
+
+    return completer.future;
+  }
+  Future<File> fromAsset3(String asset) async {
+    // To open from assets, you can copy them to the app storage folder, and the access them "locally"
+    // To open from assets, you can copy them to the app storage folder, and the access them "locally"
+    Completer<File> completer = Completer();
+
+    try {
+      var dir = await getApplicationDocumentsDirectory();
+      File file = File("${dir.path}/googlealgo.pdf");
       var data = await rootBundle.load(asset);
       var bytes = data.buffer.asUint8List();
       await file.writeAsBytes(bytes, flush: true);
@@ -113,7 +141,7 @@ class _cgeState extends State<cge> {
               icon: Icon(Icons.bubble_chart, color: Colors.white),
               onPressed: () {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => cn()));
+                    context, MaterialPageRoute(builder: (context) => asse()));
               },
             ),
 
@@ -146,8 +174,8 @@ class _cgeState extends State<cge> {
                   backgroundColor: Colors.indigoAccent,
                   child: new Text('1'),
                   foregroundColor: Colors.white,),
-                title: new Text('Intro of Computer Networks'),
-                subtitle: new Text('SlidableDrawerDelegate'),
+                title: new Text('Intro of Digital Marketing'),
+                subtitle: new Text('Swipe to read'),
               ),
             ),
 
@@ -161,12 +189,7 @@ class _cgeState extends State<cge> {
                 },
 
               ),
-              new IconSlideAction(
-                caption: 'Listen',
-                color: Colors.red,
-                icon: Icons.speaker,
 
-              ),
 
             ],
 
@@ -185,8 +208,8 @@ class _cgeState extends State<cge> {
                       backgroundColor: Colors.indigoAccent,
                       child: new Text('2'),
                       foregroundColor: Colors.white,),
-                    title: new Text('Basic Hell'),
-                    subtitle: new Text('SlidableDrawerDelegate'),
+                    title: new Text('Content Creation'),
+                    subtitle: new Text('Swipe to read'),
                   ),
                 ),
 
@@ -198,12 +221,6 @@ class _cgeState extends State<cge> {
                     onTap:(){  Navigator.push(
                         context, MaterialPageRoute(builder: (context) => PDFScreen(path:pathPDF2,)));
                     },
-
-                  ),
-                  new IconSlideAction(
-                    caption: 'Listen',
-                    color: Colors.red,
-                    icon: Icons.speaker,
 
                   ),
 
@@ -226,8 +243,8 @@ class _cgeState extends State<cge> {
                       backgroundColor: Colors.indigoAccent,
                       child: new Text('3'),
                       foregroundColor: Colors.white,),
-                    title: new Text('Basic Hell'),
-                    subtitle: new Text('SlidableDrawerDelegate'),
+                    title: new Text('Ad word'),
+                    subtitle: new Text('Swipe to see'),
                   ),
                 ),
 
@@ -236,14 +253,14 @@ class _cgeState extends State<cge> {
                     caption: 'Read',
                     color: Colors.black45,
                     icon: Icons.book,
+                    onTap: (){
+                      Navigator.push(
+                          context, MaterialPageRoute(builder: (context) => PDFScreen(path:pathPDF3,)));
+
+                    },
 
                   ),
-                  new IconSlideAction(
-                    caption: 'Listen',
-                    color: Colors.red,
-                    icon: Icons.speaker,
 
-                  ),
 
                 ],
 
